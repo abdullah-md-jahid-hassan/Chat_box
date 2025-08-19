@@ -1,0 +1,140 @@
+<!-- chat/templates/chat_box.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chat Rooms</title>
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .chat-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        .input-group span{
+            width: 150px
+        }
+        .room-input {
+            border-radius: 25px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        .room-input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        }
+        .enter-btn {
+            border-radius: 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            transition: all 0.3s ease;
+        }
+        .enter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5 col-xl-4">
+                <div class="card chat-card border-0 shadow-lg">
+                    <div class="card-body p-5 text-center">
+                        <div class="mb-4">
+                            <i class="bi bi-chat-dots text-primary" style="font-size: 3rem;"></i>
+                            <h2 class="mt-3 mb-2 fw-bold text-dark">Welcome to Chat</h2>
+                            <p class="text-muted mb-4">Enter a chat room to start messaging</p>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text bg-light border-end-0">
+                                    🙍 Name:
+                                </span>
+                                <input id="name-input" type="text" class="form-control room-input border-start-0" required 
+                                       placeholder="Enter User Name..." aria-label="Room name">
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <span class="input-group-text bg-light border-end-0">
+                                    🏠 Room Name:
+                                </span>
+                                <input id="room-name-input" type="text" class="form-control room-input border-start-0" required 
+                                       placeholder="Enter Room name..." aria-label="Room name">
+                            </div>
+                        </div>
+                        
+                        <button id="room-name-submit" type="button" class="btn enter-btn btn-primary btn-lg px-5 py-3 w-100">
+                            <i class="bi bi-arrow-right-circle me-2"></i>
+                            Enter Room
+                        </button>
+                        
+                        <div class="mt-4">
+                            <small class="text-muted">
+                                <i class="bi bi-info-circle me-1"></i>
+                                Press Enter to join quickly
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5.3 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        document.querySelector('#name-input').focus();
+        document.querySelector('#room-name-input').focus();
+        
+        document.querySelector('#room-name-input').onkeyup = function(e) {
+            if (e.key === 'Enter') {  // enter, return
+                document.querySelector('#room-name-submit').click();
+            }
+        };
+
+        document.querySelector('#room-name-submit').onclick = function(e) {
+            var name = document.querySelector('#name-input').value.trim();
+            var roomName = document.querySelector('#room-name-input').value.trim();
+            
+            if (!name) {
+                // Add Bootstrap alert for empty name
+                const name_input = document.querySelector('#name-input');
+                name_input.classList.add('is-invalid');
+                name_input.focus();
+                
+                // Remove invalid class after 3 seconds
+                setTimeout(() => {
+                    name_input.classList.remove('is-invalid');
+                }, 3000);
+            } else if (!roomName) {
+                // Add Bootstrap alert for empty room name
+                const room_input = document.querySelector('#room-name-input');
+                room_input.classList.add('is-invalid');
+                room_input.focus();
+                
+                // Remove invalid class after 3 seconds
+                setTimeout(() => {
+                    room_input.classList.remove('is-invalid');
+                }, 3000);
+            } else {
+                window.location.pathname = '/' + name + '/' + roomName + '/';
+            }
+        };
+    </script>
+</body>
+</html>
