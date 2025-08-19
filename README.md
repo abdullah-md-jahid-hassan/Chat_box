@@ -125,8 +125,8 @@ The `name` and `room_name` are used to create a group channel (e.g., `chat_<room
 ---
 
 ## 📸 Screenshots
-<img width="670" height="764" alt="Screenshot 2025-08-19 150211" src="https://github.com/user-attachments/assets/ea48e76a-5ebc-4491-baab-657ea0fe8934" />
 <img width="1890" height="783" alt="Screenshot 2025-08-19 150158" src="https://github.com/user-attachments/assets/a4c30d57-7e07-432b-9974-e2773f5f0188" />
+<img width="670" height="764" alt="Screenshot 2025-08-19 150211" src="https://github.com/user-attachments/assets/ea48e76a-5ebc-4491-baab-657ea0fe8934" />
 
 
 
